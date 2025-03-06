@@ -15,11 +15,11 @@ const Weather = () => {
   const [background, setBackground] = useState('');
   const [favoriteCities, setFavoriteCities] = useState([]);
   const [animationData, setAnimationData] = useState(null);
-  const [temperatureUnit, setTemperatureUnit] = useState('C'); // 'C', 'F', 'K'
+  const [temperatureUnit, setTemperatureUnit] = useState('C'); 
   const apiKey = '68649aa28e5102ceb93f0691549b88cb';
-  const unsplashAccessKey = 'jkoJA-q1z5c3BiMeZitAcLuQDLFINmDHgMbvLdf5jyA'; // Замени на свой ключ
+  const unsplashAccessKey = 'jkoJA-q1z5c3BiMeZitAcLuQDLFINmDHgMbvLdf5jyA'; 
 
-  // Функция для получения местоположения пользователя
+  // Location information
   const getUserLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -37,7 +37,7 @@ const Weather = () => {
     }
   };
 
-  // Функция для получения погоды по координатам
+  // Weather with coordinates
   const fetchWeatherByCoords = async (lat, lon) => {
     try {
       const response = await fetch(
@@ -48,7 +48,7 @@ const Weather = () => {
       if (response.ok) {
         setWeather(data);
         setError(null);
-        setCity(data.name); // Устанавливаем город из API
+        setCity(data.name); // City from API
         fetchBackground(data.weather[0].description);
         setAnimationData(getAnimationData(data.weather[0].main));
       } else {
@@ -61,7 +61,7 @@ const Weather = () => {
     }
   };
 
-  // Функция для получения погоды по названию города
+  // Weather by city name
   const fetchWeatherByCity = async (city) => {
     try {
       const response = await fetch(
@@ -72,7 +72,7 @@ const Weather = () => {
       if (response.ok) {
         setWeather(data);
         setError(null);
-        setCity(data.name); // Устанавливаем город из API
+        setCity(data.name); // City from API
         fetchBackground(data.weather[0].description);
         setAnimationData(getAnimationData(data.weather[0].main));
       } else {
@@ -85,7 +85,7 @@ const Weather = () => {
     }
   };
 
-  // Функция для получения фонового изображения
+  // Bckground image from Unsplash
   const fetchBackground = async (query) => {
     try {
       const response = await fetch(
@@ -98,7 +98,7 @@ const Weather = () => {
     }
   };
 
-  // Функция для выбора анимации
+  // Animation data based on weather type
   const getAnimationData = (weatherType) => {
     switch (weatherType.toLowerCase()) {
       case 'clear':
@@ -114,7 +114,7 @@ const Weather = () => {
     }
   };
 
-  // Функция для конвертации температуры
+  // Temperature conversion
   const convertTemperature = (temp) => {
     if (temperatureUnit === 'C') {
       return `${temp.toFixed(1)}°C`;
@@ -126,13 +126,13 @@ const Weather = () => {
     return `${temp.toFixed(1)}°C`;
   };
 
-  // Обработчик поиска по городу
+  // Search for weather by city
   const handleSearch = (e) => {
     e.preventDefault();
     fetchWeatherByCity(inputCity);
   };
 
-  // Устанавливаем фон для body
+  // Background image when component mounts
   useEffect(() => {
     if (background) {
       document.body.style.backgroundImage = `url(${background})`;
@@ -141,18 +141,18 @@ const Weather = () => {
     }
   }, [background]);
 
-  // Получаем местоположение при загрузке компонента
+  // Get user location when component mounts
   useEffect(() => {
     getUserLocation();
   }, []);
 
-  // Загружаем избранные города из localStorage
+  // Get favorite cities from local storage when component mounts
   useEffect(() => {
     const savedCities = JSON.parse(localStorage.getItem('favoriteCities')) || [];
     setFavoriteCities(savedCities);
   }, []);
 
-  // Функция для добавления города в избранное
+  // Check if city is already in favorites
   const addToFavorites = () => {
     if (city && !favoriteCities.includes(city)) {
       const updatedFavorites = [...favoriteCities, city];
@@ -161,7 +161,7 @@ const Weather = () => {
     }
   };
 
-  // Функция для удаления города из избранного
+  // Remove city from favorites
   const removeFromFavorites = (cityToRemove) => {
     const updatedFavorites = favoriteCities.filter((city) => city !== cityToRemove);
     setFavoriteCities(updatedFavorites);
