@@ -1,0 +1,173 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out;
+    font-family: 'Nunito', sans-serif;
+  }
+  
+  .weather-app {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.8);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .weather-app.dark {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+  }
+  
+  .weather-app.dark h1,
+  .weather-app.dark h2,
+  .weather-app.dark p {
+    color: #ffffff;
+  }
+  
+  .weather-app.dark input {
+    background-color: #333;
+    color: #ffffff;
+    border: 1px solid #555;
+  }
+  
+  .weather-app.dark button {
+    background-color: #555;
+  }
+  
+  .weather-app.dark button:hover {
+    background-color: #777;
+  }
+  
+  h1 {
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 60%;
+    margin-right: 10px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  .weather-info {
+    margin-top: 20px;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .weather-info img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .weather-info p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #555;
+  }
+  
+  .error {
+    color: red;
+    font-size: 1.2rem;
+    margin-top: 20px;
+  }
+  
+  .favorites {
+    margin-top: 20px;
+  }
+  
+  .favorites h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .favorites ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .favorites li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .favorites li:last-child {
+    border-bottom: none;
+  }
+  
+  .favorites li span {
+    cursor: pointer;
+  }
+  
+  .favorites li button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .favorites li button:hover {
+    background-color: #c82333;
+  }
+  
+  .temperature-unit {
+    margin-top: 10px;
+  }
+  
+  .temperature-unit button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
